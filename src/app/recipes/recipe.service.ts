@@ -1,11 +1,11 @@
 import { Recipe } from './recipe.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingrediant } from '../shared/Ingrediant.model';
-import { ShoppingListService } from '../shopping-list/shooing-list.service';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>();
+
     private recipes: Recipe[] = [
         new Recipe('Tasty Schnitzel', 'This is a tasty schnitzel',
         'https://toriavey.com/images/2011/02/IMG_1544.jpg',
@@ -22,6 +22,10 @@ export class RecipeService {
       ];
 
     constructor(private shoppingListService: ShoppingListService) {}
+
+    getRecipe(id: number) {
+        return this.recipes[id];
+    }
 
     getRecipes() {
         return this.recipes.slice();
